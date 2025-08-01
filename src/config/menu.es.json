@@ -1,0 +1,24 @@
+{
+  "headerPrimary": [
+    {
+      "enable": true,
+      "name": "Inicio",
+      "url": "/"
+    },
+    {
+      "enable": true,
+      "name": "Servicios",
+      "url": "/#services"
+    },
+    {
+      "enable": true,
+      "name": "Proyectos",
+      "url": "/#projects"
+    },
+    {
+      "enable": true,
+      "name": "Precios",
+      "url": "/#pricing"
+    }
+  ]
+}
