@@ -1,7 +1,7 @@
 ---
 enable: true
 title: "Nuestro Proceso"
-description: "Descubre cómo trabajamos y qué hace que nuestro enfoque sea único."
+description: "Nos enfocamos en identificar los generadores de valor en tu organización y maximizar su impacto."
 
 list:
   - title: "Descubrimiento"

@@ -1,7 +1,7 @@
 ---
 enable: true
 title: "Our Process"
-description: "Discover how we work and what makes our approach unique."
+description: "We focus on identifying the value drivers in your organization and maximizing their impact."
 
 list:
   - title: "Discovery"
