@@ -1,19 +1,19 @@
 ---
 enable: true
-title: "Por qué elegirnos"
-description: "Ofrecemos productos y servicios de clase mundial, impulsados por la innovación y la experiencia."
+title: "Why Choose Us"
+description: "We offer world-class products and services driven by innovation and expertise."
 
 list:
   - enable: true
-    title: "Experiencia"
-    description: "Más de 10 años de experiencia en la industria nos permiten ofrecer soluciones efectivas y personalizadas."
-    image: "/images/portfolio/2.jpg"
+    title: "Experience"
+    description: "Our team has extensive experience in developing high-tech solutions for world-class clients."
+    image: "/images/why-us/jason-goodman-LR5CYw3AQNo-unsplash.jpg"
   - enable: true
-    title: "Innovación"
-    description: "Nos mantenemos a la vanguardia de la tecnología para ofrecer productos y servicios innovadores."
-    image: "/images/portfolio/2.jpg"
+    title: "Innovation"
+    description: "We focus on implementing disruptive solutions to provide a competitive advantage to our clients."
+    image: "/images/why-us/andrew-george-g-fm27_BRyQ-unsplash.jpg"
   - enable: true
-    title: "Soporte al Cliente"
-    description: "Nuestro equipo está disponible 24/7 para garantizar que obtengas el mejor servicio posible."
-    image: "/images/portfolio/2.jpg"
+    title: "Quality"
+    description: "Our process is based on Lean Factory principles, prioritizing value delivery and waste reduction."
+    image: "/images/why-us/ux-indonesia-5QiGvmyJTsc-unsplash.jpg"
 ---

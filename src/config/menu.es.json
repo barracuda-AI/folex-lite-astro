@@ -12,13 +12,13 @@
     },
     {
       "enable": true,
-      "name": "Proyectos",
-      "url": "/#projects"
+      "name": "Sobre Nosotros",
+      "url": "/#why-choose-us"
     },
     {
       "enable": true,
-      "name": "Precios",
-      "url": "/#pricing"
+      "name": "Nuestros Procesos",
+      "url": "/#our-process"
     }
   ]
 }

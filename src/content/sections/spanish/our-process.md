@@ -1,19 +1,19 @@
 ---
 enable: true
-title: "Our Process"
-description: "Discover how we work and what makes our approach unique."
+title: "Nuestro Proceso"
+description: "Descubre cómo trabajamos y qué hace que nuestro enfoque sea único."
 
 list:
-  - title: "Step 1"
-    description: "Initial consultation to understand your needs."
+  - title: "Descubrimiento"
+    description: "Enfoque inicial para entender tu proceso y oportunidades."
     icon: "FaRegLightbulb"
-  - title: "Step 2"
-    description: "Proposal and planning phase."
+  - title: "Planificación"
+    description: "Creación de un plan de proyecto y estrategia de entrega."
     icon: "FaPencilRuler"
-  - title: "Step 3"
-    description: "Implementation and delivery."
+  - title: "Implementación y Evaluación"
+    description: "Ejecución del plan de proyecto y evaluación de resultados."
     icon: "FaUsersGear"
-  - title: "Step 4"
-    description: "Ongoing support and optimization."
+  - title: "Mejora Continua"
+    description: "Estudio del rendimiento e indicadores de la solución para identificar áreas de mejora."
     icon: "FaClipboardCheck"
 ---

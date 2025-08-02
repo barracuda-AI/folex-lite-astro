@@ -4,6 +4,7 @@ import type { whyChooseUsSectionSchema } from "@/sections.schema";
 import type { z } from "astro/zod";
 import OptimizedImage from "../utilities/OptimizedImage.astro";
 
+// SEE: https://tailwindflex.com/@noah/features-list-with-images-and-description
 type WhyChooseUsCardType = NonNullable<
   z.infer<typeof whyChooseUsSectionSchema>
 >["list"][0];
@@ -68,7 +69,7 @@ const {
                 src={image}
                 style="color:transparent"
                 class:list={[
-                  "h-100 scale-110 rounded-xl object-cover transition duration-500 group-hover:translate-x-2",
+                  "h-100 scale-110 object-cover transition duration-500 group-hover:translate-x-2",
                 ]}
               />
             </div>

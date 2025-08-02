@@ -6,6 +6,7 @@ import { markdownify } from "@/lib/utils/textConverter";
 import type { ourProcessSectionSchema } from "@/sections.schema";
 import type { z } from "astro/zod";
 
+// SEE: https://tailwindflex.com/@santos78/stepper-example
 // Type for this section data
 type ourProcessSectionSchema = NonNullable<
   z.infer<typeof ourProcessSectionSchema>
@@ -77,10 +78,7 @@ const itemsLength = list.length;
                 class="text-xl font-bold before:mb-2 before:block before:font-mono before:text-sm before:text-gray-500"
                 set:html={markdownify(item.title)}
               />
-              <h4
-                class="mt-2 text-base text-gray-700"
-                set:html={markdownify(item.description)}
-              />
+              <p class="mt-4" set:html={markdownify(item.description)} />
             </div>
           </li>
         ))
