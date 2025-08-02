@@ -5,7 +5,7 @@ title: "Qué podemos hacer para tu empresa"
 
 options:
   layout: "accordion" # accordion | grid
-  limit: 3 # false / number
+  limit: 4 # false / number
   column: 3 # 1 / 2 / 3 - applicable uniquement si layout est "grid"
   iconPlacement: "top" # top / right - applicable uniquement si layout est "grid"
 ---

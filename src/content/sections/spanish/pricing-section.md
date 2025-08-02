@@ -1,5 +1,5 @@
 ---
-enable: true # Contrôle la visibilité de cette section sur toutes les pages où elle est utilisée
+enable: false # Contrôle la visibilité de cette section sur toutes les pages où elle est utilisée
 title: ""
 
 list:
