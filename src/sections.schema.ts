@@ -221,4 +221,5 @@ export const sectionsSchema = {
   bannerAgencySection: bannerAgencySectionSchema,
   pricingSection: pricingSectionSchema,
   whyChooseUsSection: whyChooseUsSectionSchema,
+  ourProcessSectionSchema: ourProcessSectionSchema,
 };
