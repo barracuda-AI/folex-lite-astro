@@ -7,11 +7,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "packageManager": "pnpm@10.18.0",
   "private": true,
-  "keywords": [
-    "astro",
-    "template",
-    "tailwindcss"
-  ],
+  "keywords": ["astro", "template", "tailwindcss"],
   "repository": {
     "type": "git",
     "url": "https://github.com/getastrothemes/folex-lite-astro.git"
