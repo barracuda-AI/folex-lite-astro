@@ -10,9 +10,6 @@ on:
       - reopened
       - synchronize
 
-env:
-  AWS_PROFILE: personal
-
 jobs:
   ci_cd:
     runs-on: ubuntu-latest
