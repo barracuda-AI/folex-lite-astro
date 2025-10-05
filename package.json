@@ -5,9 +5,13 @@
   "description": "A highly customizable creative agency & personal portfolio business theme built with Tailwind CSS and Astro Js",
   "author": "getastrothemes",
   "license": "SEE LICENSE IN LICENSE.md",
-  "packageManager": "pnpm@8.15.5",
+  "packageManager": "pnpm@10.18.0",
   "private": true,
-  "keywords": ["astro", "template", "tailwindcss"],
+  "keywords": [
+    "astro",
+    "template",
+    "tailwindcss"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/getastrothemes/folex-lite-astro.git"
