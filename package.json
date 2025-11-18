@@ -28,7 +28,11 @@
     "pretty": "prettier --write src",
     "generate-favicons": "node ./scripts/generate-favicons.mjs",
     "remove-multilingual": "node ./scripts/remove-multilingual.mjs",
-    "remove-draft-from-sitemap": "node ./scripts/remove-draft-from-sitemap.mjs"
+    "remove-draft-from-sitemap": "node ./scripts/remove-draft-from-sitemap.mjs",
+    "deploy": "npm run build && bash scripts/deploy-to-s3.sh",
+    "deploy:dryrun": "npm run build && bash scripts/deploy-to-s3.sh --dryrun",
+    "sync:s3": "aws s3 sync dist/ s3://barracuida-ai-landing --profile personal --delete",
+    "sync:s3:dryrun": "aws s3 sync dist/ s3://barracuida-ai-landing --profile personal --delete --dryrun"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
