@@ -12,12 +12,13 @@ type WhyChooseUsCardType = NonNullable<
 type Props = {
   content: WhyChooseUsCardType;
   index: number;
+  alt?: string;
   class?: string;
 };
 
 const {
   class: className,
-  content: { enable, title, description, image },
+  content: { enable, title, description, image, alt },
   index,
   ...rest
 } = Astro.props;
@@ -66,6 +67,7 @@ const {
                 width={646}
                 height={485}
                 loading="lazy"
+                alt={alt || ""}
                 src={image}
                 style="color:transparent"
                 class:list={[
