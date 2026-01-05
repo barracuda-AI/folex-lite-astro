@@ -179,6 +179,7 @@ export const whyChooseUsSectionSchema = z
         description: z.string(),
         icon: z.string().optional(),
         image: z.string().optional(),
+        alt: z.string().optional(),
       }),
     ),
   })
