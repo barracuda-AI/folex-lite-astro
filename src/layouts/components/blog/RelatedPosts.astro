@@ -1,0 +1,58 @@
+---
+interface Props {
+  relatedPosts: Array<{
+    title?: string;
+    slug: string;
+    feature_image?: string;
+    excerpt?: string;
+    reading_time?: number;
+  }>;
+}
+
+const { relatedPosts } = Astro.props;
+---
+
+{
+  relatedPosts && relatedPosts.length > 0 && (
+    <div
+      data-aos="reveal-anim-top"
+      data-aos-delay="600"
+      data-aos-duration="1500"
+      class="mx-auto mt-12 max-w-4xl border-t border-inherit/10 pt-8">
+      <h3 class="mb-6 text-xl font-bold">Related Articles</h3>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {relatedPosts.map((post) => (
+          <article class="group">
+            {post.feature_image && (
+              <a
+                href={`/post/${post.slug}`}
+                class="mb-4 block overflow-hidden rounded-lg">
+                <img
+                  src={post.feature_image}
+                  alt={post.title}
+                  class="h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </a>
+            )}
+            <h4 class="mb-2 text-base leading-tight font-semibold">
+              <a
+                href={`/post/${post.slug}`}
+                class="hover:text-primary text-inherit transition-colors duration-300">
+                {post.title}
+              </a>
+            </h4>
+            {post.excerpt && (
+              <p class="mb-3 line-clamp-2 text-sm text-inherit opacity-80">
+                {post.excerpt}
+              </p>
+            )}
+            <div class="text-xs text-inherit opacity-60">
+              {post.reading_time} min read
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  )
+}
