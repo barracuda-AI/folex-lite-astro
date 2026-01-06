@@ -19,6 +19,11 @@
       "enable": true,
       "name": "Our Process",
       "url": "/#our-process"
+    },
+    {
+      "enable": true,
+      "name": "Blog",
+      "url": "/blog"
     }
   ]
 }

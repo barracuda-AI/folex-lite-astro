@@ -1,0 +1,245 @@
+---
+import Base from "@/layouts/Base.astro";
+import { ghostClient, type GhostPost } from "@/lib/ghost";
+
+export async function getStaticPaths() {
+  const POSTS_PER_PAGE = 9;
+
+  try {
+    const allPosts = await ghostClient.posts.browse({
+      limit: "all",
+      include: ["tags", "authors"] as any,
+    });
+
+    if (!allPosts || allPosts.length === 0) {
+      console.warn("No posts found from Ghost CMS");
+      return [
+        {
+          params: { page: "1" },
+          props: { posts: [], currentPage: 1, totalPages: 1 },
+        },
+      ];
+    }
+
+    const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+
+    return Array.from({ length: totalPages }, (_, i) => {
+      const page = i + 1;
+      const start = i * POSTS_PER_PAGE;
+      const end = start + POSTS_PER_PAGE;
+
+      return {
+        params: { page: String(page) },
+        props: {
+          posts: allPosts.slice(start, end),
+          currentPage: page,
+          totalPages: totalPages,
+          totalPosts: allPosts.length,
+        },
+      };
+    });
+  } catch (err) {
+    console.error("Error fetching posts for pagination:", err);
+    return [
+      {
+        params: { page: "1" },
+        props: { posts: [], currentPage: 1, totalPages: 1 },
+      },
+    ];
+  }
+}
+
+const { posts, currentPage, totalPages, totalPosts } = Astro.props;
+---
+
+<Base
+  title="Blog"
+  metaTitle={`Blog - Page ${currentPage} - Latest Articles and Insights`}
+  metaDescription="Explore our latest blog posts, articles, and insights on technology, development, and more."
+  headerPosition="sticky"
+  hasHeaderDarkBackground={false}>
+  <section class="section-lg overflow-hidden">
+    <div class="container">
+      <div class="row gy-5 gx-4 gx-lg-5">
+        <div class="col-12">
+          <div
+            data-aos="reveal-anim-top"
+            data-aos-duration="1500"
+            class="text-center">
+            <h1 class="text-display-4 md:text-display-3 mb-6 font-bold">
+              Blog
+            </h1>
+            <p class="mx-auto max-w-2xl text-lg text-inherit opacity-80">
+              Explore our latest articles and insights
+            </p>
+          </div>
+        </div>
+
+        {
+          posts && posts.length > 0 ? (
+            posts.map((post, index) => (
+              <div class="col-12 md:col-6 lg:col-4">
+                <article
+                  data-aos="reveal-anim-top"
+                  data-aos-duration="1500"
+                  data-aos-delay={index * 100}
+                  class="group flex h-full flex-col">
+                  {post.feature_image && (
+                    <a
+                      href={`/post/${post.slug}`}
+                      class="mb-5 block overflow-hidden rounded-lg">
+                      <img
+                        src={post.feature_image}
+                        alt={post.feature_image_alt || post.title || ""}
+                        class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+
+                  <div class="flex flex-grow flex-col">
+                    {post.tags && post.tags.length > 0 && (
+                      <div class="mb-3 flex flex-wrap gap-2">
+                        {post.tags.slice(0, 3).map((tag) => (
+                          <span class="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs">
+                            {tag.name}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <h2 class="mb-3 text-2xl leading-tight font-bold">
+                      <a
+                        href={`/post/${post.slug}`}
+                        class="hover:text-primary text-inherit transition-colors duration-300">
+                        {post.title}
+                      </a>
+                    </h2>
+
+                    {post.custom_excerpt || post.excerpt ? (
+                      <p class="mb-4 line-clamp-3 flex-grow text-inherit opacity-80">
+                        {post.custom_excerpt || post.excerpt}
+                      </p>
+                    ) : null}
+
+                    <div class="mt-auto space-y-3">
+                      {post.published_at && (
+                        <div class="text-sm text-inherit opacity-60">
+                          <time datetime={post.published_at}>
+                            {new Date(post.published_at).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              },
+                            )}
+                          </time>
+                        </div>
+                      )}
+
+                      <div class="flex items-center justify-between border-t border-inherit/10 pt-3 text-sm text-inherit opacity-60">
+                        <div class="flex items-center gap-2">
+                          {post.primary_author?.profile_image && (
+                            <img
+                              src={post.primary_author.profile_image}
+                              alt={post.primary_author.name || "Author"}
+                              class="h-8 w-8 rounded-full"
+                              loading="lazy"
+                            />
+                          )}
+                          <span>
+                            {post.primary_author?.name || "Unknown Author"}
+                          </span>
+                        </div>
+                        <span>{post.reading_time} min read</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            ))
+          ) : (
+            <div class="col-12">
+              <div class="py-20 text-center">
+                <h2 class="mb-4 text-2xl font-bold">No posts yet</h2>
+                <p class="text-inherit opacity-80">
+                  Check back soon for new content!
+                </p>
+              </div>
+            </div>
+          )
+        }
+
+        {
+          totalPages > 1 && (
+            <div class="col-12">
+              <nav
+                data-aos="reveal-anim-top"
+                data-aos-duration="1500"
+                class="mt-8 flex items-center justify-center gap-2"
+                aria-label="Blog pagination">
+                {currentPage > 1 && (
+                  <a
+                    href={`/blog/${currentPage - 1}`}
+                    class="hover:border-primary hover:text-primary rounded-lg border border-inherit/20 px-4 py-2 transition-colors duration-300"
+                    aria-label="Previous page">
+                    <span aria-hidden="true">←</span> Previous
+                  </a>
+                )}
+
+                <div class="flex items-center gap-2">
+                  {Array.from({ length: totalPages }).map((_, i) => {
+                    const page = i + 1;
+                    const isCurrentPage = page === currentPage;
+                    const diff = Math.abs(page - currentPage);
+                    const showPage =
+                      page === 1 || page === totalPages || diff < 2;
+                    const showEllipsis = diff === 2;
+
+                    if (showPage) {
+                      return (
+                        <a
+                          href={`/blog/${page}`}
+                          class={
+                            isCurrentPage
+                              ? "bg-primary rounded-lg px-4 py-2 font-bold text-white transition-colors duration-300"
+                              : "hover:border-primary hover:text-primary rounded-lg border border-inherit/20 px-4 py-2 transition-colors duration-300"
+                          }
+                          aria-label={`Page ${page}`}
+                          aria-current={isCurrentPage ? "page" : undefined}>
+                          {page}
+                        </a>
+                      );
+                    }
+
+                    if (showEllipsis) {
+                      return <span class="px-2">...</span>;
+                    }
+
+                    return null;
+                  })}
+                </div>
+
+                {currentPage < totalPages && (
+                  <a
+                    href={`/blog/${currentPage + 1}`}
+                    class="hover:border-primary hover:text-primary rounded-lg border border-inherit/20 px-4 py-2 transition-colors duration-300"
+                    aria-label="Next page">
+                    Next <span aria-hidden="true">→</span>
+                  </a>
+                )}
+              </nav>
+
+              <p class="mt-4 text-center text-sm text-inherit opacity-60">
+                Showing {(currentPage - 1) * 9 + 1} -{" "}
+                {Math.min(currentPage * 9, totalPosts || 0)} of{" "}
+                {totalPosts || 0} posts
+              </p>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </section>
+</Base>
